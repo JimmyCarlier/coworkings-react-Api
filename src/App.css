@@ -107,3 +107,17 @@ ul a:hover:after {
   cursor: pointer;
   transition: all 400ms ease-in-out;
 }
+
+.form-coworking {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  flex-direction: column;
+  width: 35%;
+  justify-content: center;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+input {
+  width: 200px;
+}

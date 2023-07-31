@@ -44,14 +44,13 @@ const CreateCoworking = () => {
       "http://localhost:3010/api/coworkings/",
       requestOptions
     );
-    const coworkingCreateJson = fetchCreateApi.json();
 
     navigate("/coworkings");
   };
   return (
     <>
       <Header />
-      <form onSubmit={handleCreateCoworking}>
+      <form onSubmit={handleCreateCoworking} className="form-coworking">
         <label htmlFor="name">Nom du Coworking</label>
         <input type="text" name="name" />
 
