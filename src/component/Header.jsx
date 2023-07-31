@@ -14,7 +14,9 @@ const Header = () => {
         <li>
           <Link to="/coworkings">All coworkings</Link>
         </li>
-        <li></li>
+        <li>
+          <Link to="/coworking/create">Add Coworking</Link>
+        </li>
       </ul>
     </header>
   );

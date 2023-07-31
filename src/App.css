@@ -63,7 +63,7 @@ ul a:hover:after {
 }
 
 .coworking {
-  padding: 0;
+  padding: 10px;
   margin: 0;
   align-items: flex-start;
   justify-content: left;
@@ -75,4 +75,35 @@ ul a:hover:after {
 .coworking:hover {
   width: 50%;
   background-color: #cfdef3;
+}
+
+.delete-btn {
+  width: 150px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 400ms ease-in-out;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+  background-color: red;
+}
+
+.delete-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.fake-delete-btn {
+  width: 150px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 400ms ease-in-out;
 }
