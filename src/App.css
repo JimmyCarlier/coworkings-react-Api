@@ -112,12 +112,39 @@ ul a:hover:after {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   flex-direction: column;
-  width: 35%;
+  width: 50%;
   justify-content: center;
-  margin: 20px auto;
+  margin: 100px auto;
   gap: 20px;
 }
 
 input {
   width: 200px;
+}
+
+.update-btn {
+  padding: 10px 20px;
+  background-color: grey;
+  width: 7%;
+  text-align: center;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  transition: all 200ms ease-in-out;
+}
+
+.update-btn:hover {
+  opacity: 0.5;
+}
+
+.confirm-message {
+  background-color: rgb(19, 192, 85);
+  position: absolute;
+  color: white;
+  border-radius: 20px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-bottom: 50px;
+  padding: 50px;
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import ModelCoworking from "../component/ModelCoworking";
 import Header from "../component/Header";
+import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Coworkings = () => {
   const [allCoworkings, setAllCoworkings] = useState([]);
@@ -32,7 +34,6 @@ const Coworkings = () => {
   const deleteMessage = (coworking) => {
     setIdDeleteMessage(coworking);
   };
-
   return (
     <>
       <Header />
@@ -63,6 +64,12 @@ const Coworkings = () => {
                     </button>
                   </div>
                 )}
+                <Link
+                  to={`/coworking/${coworking.id}/update`}
+                  className="update-btn"
+                >
+                  Update
+                </Link>
               </>
             );
           })}
