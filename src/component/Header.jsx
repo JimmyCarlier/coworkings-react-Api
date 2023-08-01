@@ -12,10 +12,10 @@ const Header = () => {
           <img src="user.jpg" alt="" />
         </li>
         <li>
-          <Link to="/coworkings">All coworkings</Link>
+          <Link to="/admin/coworkings">All coworkings</Link>
         </li>
         <li>
-          <Link to="/coworking/create">Add Coworking</Link>
+          <Link to="/admin/coworking/create">Add Coworking</Link>
         </li>
       </ul>
     </header>

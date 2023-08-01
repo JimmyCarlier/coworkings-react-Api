@@ -33,8 +33,8 @@ const UpdateCoworkingPage = () => {
     const submitData = {
       name: name,
       price: {
-        hour: parseInt(priceHour),
-        day: parseInt(priceDay),
+        hour: priceHour ? parseInt(priceHour) : null,
+        day: priceDay ? parseInt(priceDay) : null,
         month: parseInt(priceMonth),
       },
       address: {
@@ -65,7 +65,7 @@ const UpdateCoworkingPage = () => {
     setIsUpdate(true);
 
     setTimeout(() => {
-      navigate("/coworkings");
+      navigate("/admin/coworkings");
     }, 5000);
   };
   useEffect(() => {

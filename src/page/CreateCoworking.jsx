@@ -45,7 +45,7 @@ const CreateCoworking = () => {
       requestOptions
     );
 
-    navigate("/coworkings");
+    navigate("/admin/coworkings");
   };
   return (
     <>

@@ -148,3 +148,12 @@ input {
   margin-bottom: 50px;
   padding: 50px;
 }
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20%;
+  gap: 50px;
+}

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ModelCoworking from "../component/ModelCoworking";
 import Header from "../component/Header";
-import { Navigate } from "react-router";
 import { Link } from "react-router-dom";
 
 const Coworkings = () => {
@@ -65,7 +64,7 @@ const Coworkings = () => {
                   </div>
                 )}
                 <Link
-                  to={`/coworking/${coworking.id}/update`}
+                  to={`/admin/coworking/${coworking.id}/update`}
                   className="update-btn"
                 >
                   Update
