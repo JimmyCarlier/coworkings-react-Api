@@ -1,8 +1,12 @@
-import Header from "../component/Header";
+import Header from "../../component/admin/HeaderAdmin";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+import { CheckRoles } from "../../component/admin/CheckRoles";
 
 const CreateCoworking = () => {
   const navigate = useNavigate();
+
   const handleCreateCoworking = async (event) => {
     event.preventDefault();
 
@@ -34,9 +38,14 @@ const CreateCoworking = () => {
       capacity: parseInt(capacity),
     };
 
+    const token = Cookies.get("jwt");
+
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(submitData),
     };
     console.log(submitData);
@@ -45,8 +54,21 @@ const CreateCoworking = () => {
       requestOptions
     );
 
-    navigate("/admin/coworkings");
+    if (fetchCreateApi.status === 200) {
+      navigate("/admin/coworkings");
+    }
   };
+  useEffect(() => {
+    (async () => {
+      const role = await CheckRoles();
+      if (role != 1) {
+        navigate("/");
+      }
+      if (!Cookies.get("jwt")) {
+        navigate("/login");
+      }
+    })();
+  }, []);
   return (
     <>
       <Header />

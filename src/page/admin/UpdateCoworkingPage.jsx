@@ -1,11 +1,16 @@
 import { useNavigate, useParams } from "react-router";
 import { useState, useEffect } from "react";
-import Header from "../component/Header";
+import Header from "../../component/admin/HeaderAdmin";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import { CheckRoles } from "../../component/admin/CheckRoles";
 
 const UpdateCoworkingPage = () => {
+  const navigate = useNavigate();
+  const jwt = Cookies.get("jwt");
+  const user = jwtDecode(jwt);
   const { id } = useParams();
   const [updateCoworking, setUpdateCoworking] = useState(null);
-  const navigate = useNavigate();
   const [isUpdate, setIsUpdate] = useState(false);
   const [indexTime, setIndexTime] = useState(5);
 
@@ -18,6 +23,8 @@ const UpdateCoworkingPage = () => {
 
   const handleSubmitUpdate = async (event) => {
     event.preventDefault();
+
+    const token = Cookies.get("jwt");
 
     const name = event.target.name.value;
     const priceHour = event.target.price_hour.value;
@@ -49,7 +56,10 @@ const UpdateCoworkingPage = () => {
 
     const requestOptions = {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(submitData),
     };
 
@@ -58,19 +68,30 @@ const UpdateCoworkingPage = () => {
       requestOptions
     );
 
-    setInterval(() => {
-      setIndexTime((indexTime) => indexTime - 1);
-    }, 1000);
+    if (response.status === 200) {
+      setInterval(() => {
+        setIndexTime((indexTime) => indexTime - 1);
+      }, 1000);
 
-    setIsUpdate(true);
+      setIsUpdate(true);
 
-    setTimeout(() => {
-      navigate("/admin/coworkings");
-    }, 5000);
+      setTimeout(() => {
+        navigate("/admin/coworkings");
+      }, 5000);
+    }
   };
   useEffect(() => {
-    fetchUpdateApi();
-  }, [updateCoworking]);
+    (async () => {
+      const role = await CheckRoles();
+      if (role !== 1) {
+        navigate("/");
+      }
+      fetchUpdateApi();
+      if (!Cookies.get("jwt")) {
+        navigate("/login");
+      }
+    })();
+  }, []);
 
   return (
     <>

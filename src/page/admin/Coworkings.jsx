@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import ModelCoworking from "../component/ModelCoworking";
-import Header from "../component/Header";
-import { Link } from "react-router-dom";
+import ModelCoworking from "../../component/public/ModelCoworking";
+import Header from "../../component/admin/HeaderAdmin";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import { CheckRoles } from "../../component/admin/CheckRoles";
 
 const Coworkings = () => {
+  const navigate = useNavigate();
+  const jwt = Cookies.get("jwt");
+  const user = jwtDecode(jwt);
+
   const [allCoworkings, setAllCoworkings] = useState([]);
   const [deleteMessageApi, setDeleteMessageApi] = useState(null);
   const [idDeleteMessage, setIdDeleteMessage] = useState([]);
+  const Navigate = useNavigate();
 
   const fetchCoworkingsApi = async () => {
     const responseApi = await fetch("http://localhost:3010/api/coworkings/");
@@ -15,14 +23,28 @@ const Coworkings = () => {
   };
 
   useEffect(() => {
-    fetchCoworkingsApi();
+    (async () => {
+      const role = await CheckRoles();
+      if (role != 1) {
+        navigate("/");
+      }
+      fetchCoworkingsApi();
+      if (!Cookies.get("jwt")) {
+        Navigate("/login");
+      }
+    })();
   }, [deleteMessageApi]);
 
   const handleDeleteCoworking = async (coworkingId) => {
+    const token = Cookies.get("jwt");
+
     const fetchApiDelete = await fetch(
       `http://localhost:3010/api/coworkings/${coworkingId}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     const jsonApiDelete = await fetchApiDelete.json();

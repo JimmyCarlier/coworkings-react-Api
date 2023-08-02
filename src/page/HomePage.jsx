@@ -1,11 +1,13 @@
-import Header from "../component/Header";
+import HeaderUser from "../component/public/HeaderUser";
 
 const HomePage = () => {
   return (
-    <header className="main-page">
-      <Header />
-      <h1>Bienvenue sur Coworking List !</h1>
-    </header>
+    <>
+      <HeaderUser />
+      <header className="main-page">
+        <h1>Bienvenue sur Coworking List !</h1>
+      </header>
+    </>
   );
 };
 
