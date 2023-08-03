@@ -10,7 +10,7 @@ const Header = () => {
 
   const handleClick = () => {
     Cookies.remove("jwt");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -29,6 +29,9 @@ const Header = () => {
         </li>
         <li>
           <Link to="/admin/coworking/create">Add Coworking</Link>
+        </li>
+        <li>
+          <Link to="/admin/reviews/coworkings">All reviews</Link>
         </li>
         <li>
           <div className="user-name">

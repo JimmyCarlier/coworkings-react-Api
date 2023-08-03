@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { CheckRoles } from "../../component/admin/CheckRoles";
 
@@ -8,6 +8,9 @@ const LoginPage = () => {
   const [timeLog, setTimeLog] = useState(false);
   const [wrongUser, setWrongUser] = useState(false);
   const [isUser, setIsUser] = useState(false);
+  const [querryParam] = useSearchParams();
+  const session = querryParam.get("tokenExpired");
+  console.log(session);
 
   const handleSubmitLogin = async (event) => {
     event.preventDefault();
@@ -28,7 +31,7 @@ const LoginPage = () => {
     const repsonseJson = await responseLogin.json();
 
     if (responseLogin.status === 200) {
-      Cookies.set("jwt", repsonseJson.data);
+      Cookies.set("jwt", repsonseJson.data, { expires: 0.041 });
 
       const role = await CheckRoles();
 
@@ -54,6 +57,7 @@ const LoginPage = () => {
 
   return (
     <section className="form-admin">
+      {session && <h1>La session a expiré</h1>}
       {isUser && (
         <div className="pop-up-admin">
           <h2>Vous êtes bien connecté en tant qu'utilisateur</h2>

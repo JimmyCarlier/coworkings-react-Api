@@ -251,3 +251,52 @@ input {
   flex-direction: column;
   font-size: 0.8rem;
 }
+.review-section {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  gap: 20px;
+  margin: 50px auto;
+}
+.review {
+  background-color: rgba(128, 128, 128, 0.155);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 20px;
+}
+
+.add-review {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.textarea {
+  width: 50vw;
+}
+.rate input {
+  width: 30px;
+  border-radius: 100%;
+  padding: 15px;
+  border: 1px solid black;
+}
+.submit-review {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+}
